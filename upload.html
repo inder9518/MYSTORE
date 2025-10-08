@@ -1,40 +1,23 @@
 <!doctype html>
 <html lang="hi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Mera Photo Album</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload Products - Mera Photo Album</title>
 <style>
-:root {--primary:#5b8def;--accent:#7dd3fc;--bg:#f6f9ff;--card:#ffffff;--radius:18px;}
+:root{--primary:#5b8def;--accent:#7dd3fc;--card:#fff;--radius:18px;}
 *{box-sizing:border-box;}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:linear-gradient(180deg,#f4f8ff 0%,#fff 100%);color:#0f172a;padding:24px;min-height:100vh;display:flex;flex-direction:column;gap:24px;overflow-x:hidden;}
-.page{max-width:1100px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:16px;}
-header.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:14px 18px;border-radius:var(--radius);display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 20px rgba(91,141,239,0.18);}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;background:linear-gradient(180deg,#f4f8ff 0%,#fff 100%);padding:24px;min-height:100vh;display:flex;flex-direction:column;gap:24px;}
+.page{max-width:700px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:16px;}
+header.app-header{background:linear-gradient(135deg,var(--primary),var(--accent));color:white;padding:14px 18px;border-radius:var(--radius);display:flex;justify-content:space-between;align-items:center;}
 .brand{display:flex;align-items:center;gap:12px;}
-.logo{height:44px;width:44px;border-radius:10px;background:rgba(255,255,255,0.18);display:grid;place-items:center;font-weight:700;font-size:18px;}
-.site-title{font-size:18px;font-weight:600;}
-.actions{display:flex;align-items:center;gap:10px;}
-.cart-btn{background:rgba(255,255,255,0.14);color:white;border:0;padding:8px 12px;border-radius:12px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
-.cart-btn svg{height:20px;width:20px;}
-.cart-badge{background:#ff5a5f;color:white;font-size:12px;padding:3px 7px;border-radius:999px;min-width:26px;text-align:center;}
+.logo{height:44px;width:44px;border-radius:10px;background:rgba(255,255,255,0.18);display:grid;place-items:center;font-weight:700;}
+.site-title{font-weight:600;}
 main.content{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(2,6,23,0.03);}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px;}
-.product{background:#fff;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:transform 0.2s;}
-.product:hover{transform:translateY(-4px);}
-.product img{width:100%;height:160px;object-fit:cover;}
-.product-info{padding:10px 12px;flex:1;}
-.product h3{font-size:16px;margin:0 0 4px 0;}
-.product p{font-size:13px;color:#555;margin:0;}
-.add-btn{background:linear-gradient(135deg,#5b8def,#7dd3fc);color:white;border:none;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer;width:100%;transition:transform 0.2s,box-shadow 0.2s;}
-.add-btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(91,141,239,0.3);}
-.add-btn:disabled{background:#cbd5e1;cursor:not-allowed;}
-footer.app-footer{background:var(--card);padding:14px 18px;border-radius:12px;box-shadow:0 6px 16px rgba(2,6,23,0.04);display:flex;justify-content:space-between;align-items:center;font-size:14px;}
-.cart-sidebar{position:fixed;top:0;right:-360px;width:360px;height:100%;background:var(--card);box-shadow:-4px 0 12px rgba(0,0,0,0.2);transition:right 0.3s ease;padding:20px;display:flex;flex-direction:column;gap:12px;z-index:20;}
-.cart-sidebar.open{right:0;}
-.cart-item{display:flex;justify-content:space-between;align-items:center;gap:8px;}
-.cart-item button{background:var(--primary);color:#fff;border:none;padding:4px 8px;border-radius:6px;cursor:pointer;}
-.cart-header{font-weight:600;font-size:18px;margin-bottom:12px;}
-.close-cart{align-self:flex-end;background:#ff5a5f;padding:6px 12px;border-radius:8px;border:none;cursor:pointer;color:white;}
+input,textarea{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
+button{background:linear-gradient(135deg,#5b8def,#7dd3fc);color:white;border:none;padding:10px 14px;border-radius:10px;font-weight:600;cursor:pointer;transition:0.2s;}
+button:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(91,141,239,0.3);}
+footer.app-footer{background:var(--card);padding:14px 18px;border-radius:12px;box-shadow:0 6px 16px rgba(2,6,23,0.04);text-align:center;font-size:14px;}
 </style>
 </head>
 <body>
@@ -42,177 +25,60 @@ footer.app-footer{background:var(--card);padding:14px 18px;border-radius:12px;bo
 <header class="app-header">
 <div class="brand">
 <div class="logo">IM</div>
-<div><div class="site-title">Mera Photo Album</div></div>
-</div>
-<div class="actions">
-<button class="cart-btn" id="cartBtn">
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 3h2l1 14h12l1-9H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="10" cy="20" r="1.6" fill="currentColor"/>
-<circle cx="18" cy="20" r="1.6" fill="currentColor"/>
-</svg>
-<span>Cart</span>
-<span class="cart-badge" id="cartCount">0</span>
-</button>
+<div><div class="site-title">Upload Products</div></div>
 </div>
 </header>
 
 <main class="content">
-<div class="product-grid" id="productGrid"></div>
+<h2>Upload New Product</h2>
+<form id="uploadForm">
+<input type="text" id="name" placeholder="Product Name" required>
+<input type="number" id="price" placeholder="Price" required>
+<input type="text" id="image" placeholder="Image Link (Google Drive URL)" required>
+<textarea id="description" placeholder="Description"></textarea>
+<button type="submit">Upload</button>
+</form>
+<div id="msg" style="margin-top:12px;color:green;"></div>
 </main>
 
 <footer class="app-footer">
-<div>© 2025 Mera Photo Album</div>
-<div>Responsive Layout with Cart</div>
+© 2025 Mera Photo Album
 </footer>
 </div>
 
-<div class="cart-sidebar" id="cartSidebar">
-<div class="cart-header">Your Cart</div>
-<div id="cartItems"></div>
-<button onclick="sendOrderWhatsApp()" style="margin-top:10px;background:#25D366;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;">Send via WhatsApp</button>
-<button class="close-cart" onclick="toggleCart()">Close</button>
-</div>
-
 <script>
-let products=[], cart={};
-const cartCount=document.getElementById('cartCount');
-const cartSidebar=document.getElementById('cartSidebar');
-const cartItemsDiv=document.getElementById('cartItems');
-const grid=document.getElementById('productGrid');
+const form=document.getElementById('uploadForm');
+const msgDiv=document.getElementById('msg');
 
-// Your deployed Apps Script URL here
-const scriptURL="https://script.google.com/macros/s/AKfycbxPXzU0mogzHs-zJ9kQqTlObnFCNZrcJCkkMq-ErrlyjL7zR-SC9wNhsESjeiV_jvCWQQ/exec";
+const scriptURL="YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
 
-document.getElementById('cartBtn').addEventListener('click', toggleCart);
-function toggleCart(){cartSidebar.classList.toggle('open');}
-
-// Fetch products
-fetch(scriptURL)
-.then(r=>r.json())
-.then(data=>{
-  products = data.map(p=>{
-    // convert Drive link to direct view
-    let img=p.image;
-    if(img.includes("drive.google.com")){
-      const match = img.match(/\/d\/(.+?)\//);
-      if(match) img=`https://drive.google.com/uc?export=view&id=${match[1]}`;
-      p.image=img;
+form.addEventListener('submit', e=>{
+  e.preventDefault();
+  const data={
+    name: document.getElementById('name').value,
+    price: Number(document.getElementById('price').value),
+    image: document.getElementById('image').value,
+    description: document.getElementById('description').value,
+    Timestamp: Date.now()
+  };
+  
+  fetch(scriptURL, {
+    method:'POST',
+    body: JSON.stringify(data),
+    headers:{'Content-Type':'application/json'}
+  }).then(res=>{
+    if(res.ok){
+      msgDiv.textContent="Product Uploaded Successfully!";
+      form.reset();
+    } else {
+      msgDiv.style.color='red';
+      msgDiv.textContent="Error Uploading Product.";
     }
-    return p;
+  }).catch(err=>{
+    msgDiv.style.color='red';
+    msgDiv.textContent="Error: "+err.message;
   });
-  renderProducts();
-}).catch(err=>console.error(err));
-
-function renderProducts(){
-  grid.innerHTML="";
-  products.forEach(p=>{
-    const card=document.createElement('div');
-    card.className='product';
-    card.innerHTML=`
-      <img src="${p.image}" alt="${p.name}">
-      <div class="product-info">
-        <h3>${p.name}</h3>
-        <p>${p.description}</p>
-        <div class="btn-area" id="btn-${p.Timestamp}">
-          <button class="add-btn" onclick="addToCart('${p.Timestamp}',event)">Add to Cart</button>
-        </div>
-      </div>`;
-    card.addEventListener('click',e=>{
-      if(e.target.tagName!=='BUTTON') openPopup(p);
-    });
-    grid.appendChild(card);
-  });
-}
-
-function addToCart(id,e){
-  e.stopPropagation();
-  if(cart[id]) return;
-  cart[id]=1;
-  updateCart();
-  const btn=document.querySelector(`#btn-${id} button`);
-  btn.disabled=true;
-  btn.textContent='Added';
-}
-
-function updateCart(){
-  updateCartCount();
-  renderCartItems();
-}
-
-function updateCartCount(){
-  const total=Object.values(cart).reduce((a,b)=>a+b,0);
-  cartCount.textContent=total;
-}
-
-function renderCartItems(){
-  cartItemsDiv.innerHTML='';
-  for(let id in cart){
-    const p=products.find(x=>x.Timestamp==id);
-    const div=document.createElement('div');
-    div.className='cart-item';
-    div.innerHTML=`
-      <span>${p.name}</span>
-      <div>
-        <button onclick="changeQty('${id}',-1)">-</button>
-        <span>${cart[id]}</span>
-        <button onclick="changeQty('${id}',1)">+</button>
-      </div>`;
-    cartItemsDiv.appendChild(div);
-  }
-}
-
-function changeQty(id,delta){
-  cart[id]+=delta;
-  if(cart[id]<=0){
-    delete cart[id];
-    const btn=document.querySelector(`#btn-${id} button`);
-    btn.disabled=false;
-    btn.textContent='Add to Cart';
-  }
-  updateCart();
-}
-
-// WhatsApp
-function sendOrderWhatsApp(){
-  if(Object.keys(cart).length===0) return alert("Cart empty!");
-  let text="🛒 Order Details:\n";
-  let total=0;
-  for(let id in cart){
-    const p=products.find(x=>x.Timestamp==id);
-    const qty=cart[id];
-    text+=`${p.name} x ${qty} = ₹${p.price*qty}\n`;
-    total+=p.price*qty;
-  }
-  text+="Total: ₹"+total;
-  const whatsappURL=`https://wa.me/9518843849?text=${encodeURIComponent(text)}`;
-  window.open(whatsappURL,"_blank");
-}
-
-// Popup
-const popup=document.createElement('div');
-popup.style.display='none';
-popup.style.position='fixed';
-popup.style.top=0;popup.style.left=0;popup.style.right=0;popup.style.bottom=0;
-popup.style.background='rgba(0,0,0,0.6)';
-popup.style.justifyContent='center';popup.style.alignItems='center';
-popup.style.zIndex=30;
-popup.innerHTML=`
-<div style='background:#fff;padding:20px;border-radius:12px;max-width:400px;width:90%;text-align:center;'>
-<img id='popupImg' src='' style='width:100%;border-radius:8px;margin-bottom:10px;' />
-<h3 id='popupTitle'></h3>
-<p id='popupDesc'></p>
-<button onclick='closePopup()' style='margin-top:10px;background:#ff5a5f;padding:6px 12px;border-radius:8px;border:none;color:white;'>Close</button>
-</div>`;
-document.body.appendChild(popup);
-
-function openPopup(p){
-  document.getElementById('popupImg').src=p.image;
-  document.getElementById('popupTitle').innerText=p.name;
-  document.getElementById('popupDesc').innerText=p.description;
-  popup.style.display='flex';
-}
-function closePopup(){popup.style.display='none';}
+});
 </script>
 </body>
 </html>
